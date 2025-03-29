@@ -1,23 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 
-import { format } from "date-fns";
+const withDateTimePretty = (WrappedComponent) => {
+  const DateTimePretty = ({ date, ...restProps }) => {
+    let formattedDate = 'N/A';  
+    if (date) {
+      const momentDate = typeof date === 'string' 
+        ? moment(date, 'YYYY-MM-DD', true)
+        : moment(date);
+      formattedDate = momentDate.isValid() 
+        ? momentDate.format('DD.MM.YYYY')
+        : 'Invalid date format';
+    }
+      return <WrappedComponent {...restProps} text={formattedDate} />;
+    };
 
-const witchDateTimePretty = (Component) => {
-  const HOCComponent = (props) => {
-    const { text } = props;
-
-    const transformPrettyTime = format(text, "dd/MMM/yyyy hh:mm:ss");
-
-    return <Component {...props} text={transformPrettyTime} />;
+  DateTimePretty.displayName = `WithDateTimePretty(${WrappedComponent.displayName 
+    || WrappedComponent.name || 'Component'})`;
+  DateTimePretty.propTypes = {
+    date: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+      PropTypes.instanceOf(moment)
+    ]),
   };
-  HOCComponent.displayName = "transformDatetimeHOC";
-
-  return HOCComponent;
+  return DateTimePretty;
 };
-
-witchDateTimePretty.propTypes = {
-  dateTime: PropTypes.string.isRequired,
-};
-
-export default witchDateTimePretty;
+export default withDateTimePretty;

@@ -10,7 +10,7 @@ const {loading}=useContext(PostContext);
       <div className="error-block block">
         <span className="error-message">{message}</span>
         {message === "Page not found" && (
-          <NavLink to="/ra-router-crud" className={"home-message block"}>
+          <NavLink to="/" className={"home-message block"}>
             {"На главную"}
           </NavLink>
         )}

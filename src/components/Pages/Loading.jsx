@@ -6,7 +6,7 @@ const Loading = () => {
   const { loading } = useContext(PostContext);
   return (
     <div className="loading-block block">
-      {loading && <span className="loading-text text">Loading...</span>}
+      {loading && <span className="loading-text text">Подождите...</span>}
     </div>
   );
 };

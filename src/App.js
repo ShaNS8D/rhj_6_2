@@ -1,5 +1,4 @@
 import "./App.css";
-import "./main.css";
 import "./components/Panel/panel.css";
 import "./components/Pages/post.css";
 import "./components/Form/form.css";
@@ -14,40 +13,34 @@ import PostEdit from "./components/Pages/PostEdit";
 import PostsNew from "./components/Pages/PostNew";
 import Error from "./components/Pages/Error";
 
-import { nanoid } from "nanoid";
 
-function App() {
+const App = () => {
   return (
     <PostProvider>
       <BrowserRouter>
         <div className="container">
           <Panel />
-
           <Routes>
             <Route
               exact
-              path="/ra-router-crud/"
-              element={
-                <PostsList key={nanoid(8)} className={"posts"}></PostsList>
-              }
+              path="/"
+              element={<PostsList />}
             />
-
             <Route
-              path="/ra-router-crud/posts/:id"
-              element={<PostsView key={nanoid(8)} type={"post-view"} />}
+              path="/posts/:id"
+              element={<PostsView type={"post-view"} />}
             ></Route>
-            <Route
-              path="/ra-router-crud/posts/:id/edit"
-              element={<PostEdit key={nanoid(8)} type={"post-edit"} />}
+             <Route
+              path="/posts/:id/edit"
+              element={<PostEdit type={"post-edit"} />}
             />
             <Route
-              path="/ra-router-crud/posts/new"
-              element={<PostsNew key={nanoid(8)} type={"post-new"} />}
-            />
-
+              path="/posts/new"
+              element={<PostsNew type={"post-new"} />}
+            /> 
             <Route
-              path="/ra-router-crud/*"
-              element={<Error key={nanoid(8)} message={"Page not found"} />}
+              path="/*"
+              element={<Error message={"Page not found"} />}
             />
           </Routes>
         </div>

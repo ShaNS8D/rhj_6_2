@@ -1,47 +1,43 @@
 import { Button,  ButtonClose} from "../Atoms/Atoms";
 import Form from "../Form/Form";
-import { nanoid } from "nanoid";
 
 
 const PostsNew = (props) => {
- // console.log(props, "newProps");
-
   return (
     <div className={props.type + "-wrapper"}>
-      <div key={nanoid(5)} className="post-new-header__btns-block">
+      <div key="posts-new-header" className="post-new-header__btns-block">
         <Button
-          key={nanoid(5)}
+          key="posts-new-publish"
           text={"Публикация"}
           type={props.type + "-header__btn"}
         >
           {props.children}
         </Button>
         <Button
-          key={nanoid(5)}
+          key="posts-new-photo"
           text={"Фото/Видео"}
           type={props.type + "-header__btn "}
         />
         <Button
-          key={nanoid(5)}
+          key="posts-new-broadcast"
           text={"Прямой эфир"}
           type={props.type + "-header__btn"}
         />
         <Button
-          key={nanoid(5)}
+          key="posts-new-more"
           text={"Ещё..."}
           type={props.type + "-header__btn"}
         />
         <ButtonClose
-          key={nanoid(5)}
+          key="posts-new-close"
           text={"Х"}
           type={props.type + "-header__btn-close"}
-          url={"/ra-router-crud"}
+          url={"/"}
         />
       </div>
-      <div key={nanoid(5)} className={props.type +"__content"}>
-      <Form key={nanoid(5)} type={props.type}/>
-      </div>
-      
+      <div className={props.type +"__content"}>
+        <Form type={props.type}/>
+      </div>      
     </div>
   );
 };
